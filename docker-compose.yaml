@@ -1,0 +1,30 @@
+version: "3"
+services:
+
+  traefik:
+    image: traefik:alpine
+    labels:
+      - traefik.frontend.rule=Host:traefik.kubernetes.learn-devops.xyz
+      - traefik.port=8080
+      - traefik.enable=true
+    environment:
+      DO_AUTH_TOKEN: '21478ae1498080f32619bd0d9f05722a6f495aca914b947e11321506d8227115'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${PWD}/traefik.toml:/etc/traefik/traefik.toml
+      - ${PWD}/acme.json:/acme.json
+      # note: acme.json need to have 0600 permissions.
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080 
+
+  # keycloak:
+  #   image: jboss/keycloak
+  #   labels:
+  #     - traefik.frontend.rule=Host:keycloak.kubernetes.learn-devops.xyz
+  #     - traefik.port=8080
+  #     - traefik.enable=true
+  #   environment:
+  #     KEYCLOAK_PASSWORD: pass
+  #     KEYCLOAK_USER: admin
