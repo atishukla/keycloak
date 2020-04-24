@@ -27,9 +27,7 @@ logLevel = "INFO"
   address = ":8080"
 
     [entryPoints.dashboard.auth.basic]
-    # admin/secret
-    # users = ["admin:$2y$08$64hQda74gXS80mS63hN3xOFGVB9KA2vUOXtW.NDaBjX9pEHq7qdUa"]
-    users = [admin:$apr1$Z.OYFEc5$T6LKNqnCb3pyyDCVMKwkx/]
+    users = ["admin:$apr1$Z.OYFEc5$T6LKNqnCb3pyyDCVMKwkx/"]
 
 [acme]
 email = "atishayshukla@gmail.com"
